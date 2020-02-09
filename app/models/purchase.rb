@@ -4,8 +4,8 @@ class Purchase < ApplicationRecord
 
   scope :alive, -> { where("created_at > ?", 3.days.ago) }
 
-  def alive?
-    created_at > 3.days.ago
+  def is_alive?
+    created_at > 2.days.ago
   end
 
 end
