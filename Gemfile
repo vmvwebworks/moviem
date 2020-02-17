@@ -9,6 +9,9 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
+
+# Search engine
+gem 'ransack', github: 'activerecord-hackery/ransack'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -29,7 +32,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # TODO simplecov config
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', require: false
+  gem 'rspec-rails', '~> 4.0.0.beta'
 end
 
 group :development do
