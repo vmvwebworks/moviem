@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action only: [:index, :library] do
+  before_action except: [:index] do
     user_by_id || user_by_email
   end
 
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def library
-    json_response(@user)
+    json_response(type.search(title_or_plot_cont: params[:search]).result)
   end
 
   private
@@ -26,6 +26,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def type
+    case params[:type]
+    when "movies"
+      movies
+    when "seasons"
+      seasons
+    end
+  end
+  # TODO it's better to not allow the alive method here and isolate on other, then you can switch between alive/expired.
   def movies
     @user.movies.alive
   end
@@ -33,4 +42,5 @@ class UsersController < ApplicationController
   def seasons
     @user.seasons.alive
   end
+
 end
