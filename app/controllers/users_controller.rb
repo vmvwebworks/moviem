@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action only: [:show] do
+  before_action only: [:index, :library] do
     user_by_id || user_by_email
   end
 
