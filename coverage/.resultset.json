@@ -212,6 +212,32 @@
         "lines": [
           1,
           null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -287,29 +313,6 @@
           null
         ]
       },
-      "/home/marcos/misapps/moviem/app/models/user.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/marcos/misapps/moviem/app/models/concerns/commons.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
       "/home/marcos/misapps/moviem/spec/models/season_spec.rb": {
         "lines": [
           1,
@@ -334,6 +337,29 @@
           null,
           1,
           1,
+          null
+        ]
+      },
+      "/home/marcos/misapps/moviem/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/marcos/misapps/moviem/app/models/concerns/commons.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -383,6 +409,6 @@
         ]
       }
     },
-    "timestamp": 1581949981
+    "timestamp": 1581965957
   }
 }

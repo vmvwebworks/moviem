@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def library
-    json_response(type.search(title_or_plot_cont: params[:search]).result)
+    json_response(type.search(purchaseable_title_or_purchaseable_plot_cont: params[:search]).result.ascending)
   end
 
   private
@@ -35,12 +35,19 @@ class UsersController < ApplicationController
     end
   end
   # TODO it's better to not allow the alive method here and isolate on other, then you can switch between alive/expired.
+  # def movies
+  #   @user.movies.alive
+  # end
+  #
+  # def seasons
+  #   @user.seasons.alive
+  # end
   def movies
-    @user.movies.alive
+    @user.purchases.alive.movies
   end
 
   def seasons
-    @user.seasons.alive
+    @user.purchases.alive.seasons
   end
 
 end

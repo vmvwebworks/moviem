@@ -1,6 +1,9 @@
 class PurchasesController < ApplicationController
-  before_action do
-    @user = User.find(params[:user_id])
+  before_action except: [:index] do
+    @user = User.find_by_email(params[:email])
+  end
+  def index
+    json_response("For retrieve data use type, email and search params")
   end
 
   def movies
