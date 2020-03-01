@@ -1,7 +1,7 @@
 class LibrariesController < ApplicationController
 
   before_action only: [:movies, :seasons] do
-    params.require([:email])
+    redirect_to library_path unless params[:email]
     @user = User.find_by_email(params[:email])
   end
 
@@ -10,13 +10,11 @@ class LibrariesController < ApplicationController
   end
 
   def movies
-    # .search(movie_title_or_movie_plot_cont: params[:search]).result
-    json_response(@user.movies.includes(:purchases).where('purchases.user_id = ?', @user.id).alive.ascending.ransack(title_or_plot_cont: params[:search]).result)
+    @movies = @user.purchases.movies.alive.ransack(purchaseable_of_Movie_type_title_or_purchaseable_of_Movie_type_plot_cont: params[:search]).result
   end
 
   def seasons
-    json_response(@user.purchases.alive.seasons.as_json(include: :purchaseable))
+    @seasons = @user.purchases.seasons.alive.ransack(purchaseable_of_Season_type_title_or_purchaseable_of_Season_type_plot_cont: params[:search]).result
   end
-
 
 end

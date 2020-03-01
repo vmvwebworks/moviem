@@ -8,9 +8,7 @@ class UsersController < ApplicationController
     json_response(@user)
   end
 
-  def library
-    json_response(type.search(purchaseable_title_or_purchaseable_plot_cont: params[:search]).result.ascending)
-  end
+
 
   private
 
@@ -24,30 +22,6 @@ class UsersController < ApplicationController
     if params[:email]
       @user = User.find_by_email(params[:email])
     end
-  end
-
-  def type
-    case params[:type]
-    when "movies"
-      movies
-    when "seasons"
-      seasons
-    end
-  end
-  # TODO it's better to not allow the alive method here and isolate on other, then you can switch between alive/expired.
-  # def movies
-  #   @user.movies.alive
-  # end
-  #
-  # def seasons
-  #   @user.seasons.alive
-  # end
-  def movies
-    @user.purchases.alive.movies
-  end
-
-  def seasons
-    @user.purchases.alive.seasons
   end
 
 end

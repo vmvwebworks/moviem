@@ -6,29 +6,4 @@ Rails.application.routes.draw do
     get :movies
     get :seasons
   end
-  # resources :users, only: [:show] do
-  #   # member do
-  #   #   get :library
-  #   # end
-  #   resources :purchases, except: [:destroy] do
-  #     collection do
-  #       get :movies
-  #       get :seasons
-  #     end
-  #   end
-  # end
-
-  # resources :movies, only: [:index, :show] do
-  #   collection do
-  #     get :alive
-  #   end
-  # end
-
-  # resources :seasons, only: [:index, :show] do
-  #   resources :episodes, only: [:index, :show] do
-  #     collection do
-  #       get :alive
-  #     end
-  #   end
-  # end
 end

@@ -1,0 +1,5 @@
+json.seasons @seasons do |purchase|
+  json.title purchase.purchaseable.title
+  json.plot purchase.purchaseable.plot
+  json.purchased_on purchase.created_at
+end
