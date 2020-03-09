@@ -1,3 +1,5 @@
 class Option < ApplicationRecord
-  belongs_to :purchase
+  has_many :purchases
+  belongs_to :optionable, polymorphic: true
+  belongs_to :quality
 end

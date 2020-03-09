@@ -6,4 +6,17 @@ Rails.application.routes.draw do
     get :movies
     get :seasons
   end
+
+  resources :movies do
+    resources :options do
+      resources :purchases
+    end
+  end
+
+  resources :seasons do
+    resources :options do
+      resources :purchases
+    end
+  end
+
 end
