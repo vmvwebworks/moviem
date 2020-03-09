@@ -15,7 +15,7 @@ class PurchasesController < ApplicationController
   def movie_purchase
     @movie = Movie.find(params[:movie_id])
     unless @user.movies.alive.exists?(params[:movie_id])
-      @user.purchases.create!(purchaseable_id: params[:movie_id], purchaseable_type: "Movie", option_id: params[:option_id])
+      @user.purchases.create(purchaseable_id: params[:movie_id], purchaseable_type: "Movie", option_id: params[:option_id])
       json_response("#{@movie.title} succeful purchased.")
     else
       json_response("#{@movie.title} already purchased.")
@@ -23,7 +23,13 @@ class PurchasesController < ApplicationController
   end
 
   def season_purchase
-    @user.purchases.create!(purchaseable_id: params[:season_id], purchaseable_type: "Season", option_id: params[:option_id])
+    @season = Season.find(params[:season_id])
+    unless @user.seasons.alive.exists?(params[:season_id])
+      @user.purchases.create(purchaseable_id: params[:season_id], purchaseable_type: "Season", option_id: params[:option_id])
+      json_response("#{@season.title} succeful purchased.")
+    else
+      json_response("#{@season.title} already purchased.")
+    end
   end
 
   def purchaseable
