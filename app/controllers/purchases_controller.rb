@@ -13,8 +13,12 @@ class PurchasesController < ApplicationController
   end
 
   def movie_purchase
+    @movie = Movie.find(params[:movie_id])
     unless @user.movies.alive.exists?(params[:movie_id])
       @user.purchases.create!(purchaseable_id: params[:movie_id], purchaseable_type: "Movie", option_id: params[:option_id])
+      json_response("#{@movie.title} succeful purchased.")
+    else
+      json_response("#{@movie.title} already purchased.")
     end
   end
 
