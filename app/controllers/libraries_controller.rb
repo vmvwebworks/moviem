@@ -1,12 +1,12 @@
 class LibrariesController < ApplicationController
 
   before_action only: [:movies, :seasons] do
-    redirect_to library_path unless params[:email]
-    @user = User.find_by_email(params[:email])
+    auth
+    redirect_to library_path unless @user
   end
 
   def show
-    json_response("For retrieve data use email param and search param for filter, /library/movies for movie purchases and /library/seasons for seasons")
+    json_response("For retrieve data use email or user_id param. You can use search param for filter /library/movies for movie purchases and /library/seasons for seasons")
   end
 
   def movies
@@ -14,8 +14,22 @@ class LibrariesController < ApplicationController
   end
 
   def seasons
-    @seasons = @user.purchases.seasons.alive.ransack(purchaseable_of_Season_type_title_or_purchaseable_of_Season_type_plot_cont: params[:search]).result.sort_by(&:remaining_time) 
+    @seasons = @user.purchases.seasons.alive.ransack(purchaseable_of_Season_type_title_or_purchaseable_of_Season_type_plot_cont: params[:search]).result.sort_by(&:remaining_time)
   end
+
+  private
+
+    def auth
+      if params[:email]
+        @user = User.find_by_email(params[:email])
+      elsif user_id
+        @user = User.find(user_id)
+      end
+    end
+
+    def user_id
+      params[:user_id] || params[:id]
+    end
 
 end
 
@@ -31,7 +45,8 @@ end
 # 2.An endpoint to return the seasons ordered by creation, including the list of episodes ordered by its number. -- OK
 # 3.An endpoint to return both movies and seasons, ordered by creation. -- OK
 # 4.An endpoint for a user to perform a purchase of a content. -- OK
-# 5.An endpoint to get the library of a user ordered by the remaining time to watch the content.
+# 5.An endpoint to get the library of a user ordered by the remaining time to watch the content. -- OK
+
 # Notes:
 # A. Implement the API following REST principles
 # B. Use any gem or library that you need (except gems like rocket pants)
