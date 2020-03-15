@@ -4,8 +4,8 @@ module Commons
     where("purchases.created_at > ?", 3.days.ago)
   end
 
-  def ascending
-    order('created_at ASC')
+  def descending
+    order('created_at DESC')
   end
 
 end

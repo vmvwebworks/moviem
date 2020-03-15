@@ -5,4 +5,8 @@ class ApplicationController < ActionController::API
     json_response("Welcome to Moviem")
   end
 
+  def available_catalog
+    @catalog = Movie.all + Season.all
+  end
+
 end

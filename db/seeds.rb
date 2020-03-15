@@ -29,9 +29,16 @@ User.create([{email: "common_user@moviem.com"}, {email: "common_user2@moviem.com
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Movie.all.each do |movie|
-  movie.options.create!([{price: 2.99, quality_id: Quality.first.id},{price: 2.99, quality_id: Quality.last.id}])
+  movie.options.create([{price: 2.99, quality_id: Quality.first.id},{price: 2.99, quality_id: Quality.last.id}])
 end
 
 Season.all.each do |season|
-  season.options.create!([{price: 2.99, quality_id: Quality.first.id},{price: 2.99, quality_id: Quality.last.id}])
+  season.options.create([{price: 2.99, quality_id: Quality.first.id},{price: 2.99, quality_id: Quality.last.id}])
+  season.episodes.create([
+    {title: "episode 1", plot: "lorem...", number: 1},
+    {title: "episode 2", plot: "ipsum...", number: 2},
+    {title: "episode 3", plot: "dolor...", number: 3},
+    {title: "episode 4", plot: "sit...", number: 4},
+    {title: "episode 5", plot: "amet...", number: 5}
+    ])
 end
